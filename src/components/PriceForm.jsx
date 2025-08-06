@@ -5,8 +5,9 @@ export default function PriceForm({ onNewPrice }) {
   const [form, setForm] = useState({
     farmacia: "",
     indirizzo: "",
-    lat: "",
-    lng: "",
+    cap: "",
+    citta: "",
+    provincia: "",
     prodotto: "",
     prezzo: "",
   });
@@ -28,8 +29,9 @@ export default function PriceForm({ onNewPrice }) {
         setForm({
           farmacia: "",
           indirizzo: "",
-          lat: "",
-          lng: "",
+          cap: "",
+          citta: "",
+          provincia: "",
           prodotto: "",
           prezzo: "",
         });
@@ -43,59 +45,63 @@ export default function PriceForm({ onNewPrice }) {
       className="bg-white p-4 rounded-xl shadow-md mb-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
     >
       <input
-        className="border p-2 rounded"
         name="farmacia"
         value={form.farmacia}
         onChange={handleChange}
         placeholder="Nome farmacia"
         required
+        className="border p-2 rounded"
       />
       <input
-        className="border p-2 rounded"
         name="indirizzo"
         value={form.indirizzo}
         onChange={handleChange}
         placeholder="Indirizzo"
         required
+        className="border p-2 rounded"
       />
       <input
-        className="border p-2 rounded"
-        name="lat"
-        type="number"
-        step="any"
-        value={form.lat}
+        name="cap"
+        value={form.cap}
         onChange={handleChange}
-        placeholder="Latitudine"
+        placeholder="CAP"
         required
+        className="border p-2 rounded"
       />
       <input
-        className="border p-2 rounded"
-        name="lng"
-        type="number"
-        step="any"
-        value={form.lng}
+        name="citta"
+        value={form.citta}
         onChange={handleChange}
-        placeholder="Longitudine"
+        placeholder="Città"
         required
+        className="border p-2 rounded"
       />
       <input
+        name="provincia"
+        value={form.provincia}
+        onChange={handleChange}
+        placeholder="Provincia"
+        required
         className="border p-2 rounded"
+      />
+      <input
         name="prodotto"
         value={form.prodotto}
         onChange={handleChange}
         placeholder="Prodotto"
         required
+        className="border p-2 rounded"
       />
       <input
-        className="border p-2 rounded"
         name="prezzo"
         type="number"
         value={form.prezzo}
         onChange={handleChange}
         placeholder="Prezzo"
         required
+        className="border p-2 rounded"
       />
-      <button className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 col-span-full">
+      <button className="col-span-full bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700">
         Aggiungi Prezzo
       </button>
     </form>

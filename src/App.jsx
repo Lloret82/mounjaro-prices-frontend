@@ -1,6 +1,6 @@
 import { useState } from "react";
-import PriceList from "./components/PriceList";
 import PriceForm from "./components/PriceForm";
+import MapView from "./components/MapView";
 
 export default function App() {
   const [refresh, setRefresh] = useState(false);
@@ -10,8 +10,8 @@ export default function App() {
       <h1 className="text-3xl font-bold text-center text-indigo-700 mb-6">
         💉 Mounjaro Price Tracker
       </h1>
-      <PriceForm onNewPrice={() => setRefresh(!refresh)} />
-      <PriceList key={refresh} />
+      <PriceForm onNewPrice={() => setRefresh((f) => !f)} />
+      <MapView key={refresh} />
     </div>
   );
 }
