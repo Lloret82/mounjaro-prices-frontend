@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/react.svg";
+import logo from "../assets/logo.svg";
 
 const links = [
   { to: "/", label: "Home" },
@@ -12,16 +12,37 @@ const links = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+
   return (
-    <header className="bg-indigo-700 text-white w-full">
-      <div className="flex items-center justify-between p-4">
-        <div className="flex items-center space-x-2">
+    <header className="fixed inset-x-0 top-0 z-[1002] bg-indigo-700 text-white h-16">
+      <div className="max-w-6xl mx-auto flex items-center justify-between h-full px-4">
+        {/* Logo */}
+        <NavLink to="/" className="flex items-center space-x-2">
           <img src={logo} alt="Logo" className="h-8 w-8" />
           <span className="font-bold text-lg">Mounjaro Tracker</span>
-        </div>
+        </NavLink>
+
+        {/* Desktop navigation */}
+        <nav className="hidden md:flex space-x-6">
+          {links.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) =>
+                `text-lg hover:underline ${
+                  isActive ? "underline font-semibold" : ""
+                }`
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        {/* Mobile hamburger */}
         <button
-          className="md:hidden z-20"
-          onClick={() => setOpen((o) => !o)}
+          className="md:hidden p-2"
+          onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
           <svg
@@ -38,18 +59,29 @@ export default function Header() {
             />
           </svg>
         </button>
-        <ul
-          className={`absolute top-0 right-0 bg-indigo-700 h-full w-2/3
-     md:static md:flex md:space-x-6 p-6 md:p-0
-     transform transition-transform duration-300 ease-in-out
-     ${open ? "translate-x-0" : "translate-x-full"} md:translate-x-0`}
-        >
+      </div>
+
+      {/* Mobile overlay */}
+      {open && (
+        <div
+          className="fixed inset-0 z-[1000] bg-black bg-opacity-50"
+          onClick={() => setOpen(false)}
+        />
+      )}
+
+      {/* Mobile drawer */}
+      <div
+        className={`fixed inset-y-0 left-0 z-[1001] w-64 bg-indigo-700 transform transition-transform duration-300 md:hidden ${
+          open ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <ul className="mt-16 flex flex-col p-6 space-y-4">
           {links.map((link) => (
-            <li key={link.to} className="mb-4 md:mb-0">
+            <li key={link.to}>
               <NavLink
                 to={link.to}
                 className={({ isActive }) =>
-                  `block text-lg hover:underline ${
+                  `block text-white text-xl hover:underline ${
                     isActive ? "underline font-semibold" : ""
                   }`
                 }
