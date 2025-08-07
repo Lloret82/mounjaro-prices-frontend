@@ -53,7 +53,7 @@ export default function MapView() {
     : prices;
 
   return (
-    <div className="relative h-screen">
+    <div className="relative h-[500px]">
       <button
         onClick={handleLocate}
         className="absolute top-4 right-4 z-10 bg-white p-2 rounded shadow"
