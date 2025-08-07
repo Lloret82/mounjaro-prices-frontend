@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { API_URL } from "../config";
+import provincesList from "../constants/provinces";
 
 export default function PriceForm({ onNewPrice }) {
   const [form, setForm] = useState({
@@ -24,25 +25,14 @@ export default function PriceForm({ onNewPrice }) {
       body: JSON.stringify(form),
     })
       .then((res) => res.json())
-      .then((data) => {
-        onNewPrice(data);
-        setForm({
-          farmacia: "",
-          indirizzo: "",
-          cap: "",
-          citta: "",
-          provincia: "",
-          prodotto: "",
-          prezzo: "",
-        });
-      })
-      .catch((err) => console.error("Errore nell'invio prezzo:", err));
+      .then((data) => onNewPrice(data))
+      .catch((err) => console.error("Errore spedizione:", err));
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-4 rounded-xl shadow-md mb-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
+      className="bg-white p-4 rounded-xl shadow-md grid grid-cols-1 sm:grid-cols-2 gap-4"
     >
       <input
         name="farmacia"
@@ -76,14 +66,25 @@ export default function PriceForm({ onNewPrice }) {
         required
         className="border p-2 rounded"
       />
-      <input
+      <select
         name="provincia"
         value={form.provincia}
         onChange={handleChange}
-        placeholder="Provincia"
         required
         className="border p-2 rounded"
-      />
+      >
+        <option value="" disabled>
+          Seleziona Provincia
+        </option>
+        {provincesList.map((p, i) => {
+          const code = p.match(/\((.*?)\)/)[1];
+          return (
+            <option key={i} value={code}>
+              {p}
+            </option>
+          );
+        })}
+      </select>
       <input
         name="prodotto"
         value={form.prodotto}
@@ -101,7 +102,10 @@ export default function PriceForm({ onNewPrice }) {
         required
         className="border p-2 rounded"
       />
-      <button className="col-span-full bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700">
+      <button
+        type="submit"
+        className="col-span-full bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700"
+      >
         Aggiungi Prezzo
       </button>
     </form>
