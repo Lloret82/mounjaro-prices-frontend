@@ -5,6 +5,8 @@ import Trova from "./pages/Trova";
 import Aggiungi from "./pages/Aggiungi";
 import Letture from "./pages/Letture";
 import Notizie from "./pages/Notizie";
+import Risparmio from "./pages/Risparmio";
+import PerditaPeso from "./pages/PerditaPeso";
 
 export default function App() {
   return (
@@ -15,6 +17,8 @@ export default function App() {
         <Route path="/aggiungi" element={<Aggiungi />} />
         <Route path="/letture" element={<Letture />} />
         <Route path="/notizie" element={<Notizie />} />
+        <Route path="/risparmio" element={<Risparmio />} />
+        <Route path="/perditapeso" element={<PerditaPeso />} />
       </Routes>
     </MainLayout>
   );

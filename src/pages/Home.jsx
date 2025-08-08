@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Modal from "../components/Modal";
 import PriceForm from "../components/PriceForm";
 import AdBanner from "../components/AdBanner";
@@ -11,21 +11,21 @@ const articles = [
     excerpt:
       "Scopri consigli pratici per trovare sempre il prezzo più conveniente per i tuoi farmaci.",
     image: "https://picsum.photos/seed/pharmacy/400/300",
-    link: "#",
+    link: "/risparmio",
   },
   {
     title: "Cos’è Mounjaro e come funziona",
     excerpt:
       "Approfondimento sul principio attivo, benefici e possibili effetti collaterali.",
     image: "https://picsum.photos/seed/medicine/400/300",
-    link: "#",
+    link: "/perditapeso",
   },
   {
     title: "Storie di Successo: utenti reali",
     excerpt:
       "Leggi le esperienze di chi ha condiviso il proprio prezzo e ha aiutato la comunità.",
     image: "https://picsum.photos/seed/community/400/300",
-    link: "#",
+    link: "/risparmio",
   },
 ];
 
@@ -38,10 +38,8 @@ export default function Home() {
       {/* Hero */}
       <section className="relative bg-gradient-to-r from-indigo-600 to-indigo-400 text-white py-20 px-4 text-center">
         <h1 className="text-5xl font-extrabold mb-4">
-          Benvenuto su{" "}
-          <span className="underline decoration-white/30">
-            Mounjaro Tracker
-          </span>
+          Benvenuti su{" "}
+          <span className="underline decoration-white/30">Mounjaro Italia</span>
         </h1>
         <p className="text-lg mb-8">
           Monitora, condividi e trova i prezzi migliori direttamente sulla
@@ -82,12 +80,12 @@ export default function Home() {
             <div className="p-6">
               <h3 className="text-2xl font-semibold mb-2">{art.title}</h3>
               <p className="text-gray-600 mb-4">{art.excerpt}</p>
-              <a
-                href={art.link}
+              <Link
+                to={art.link}
                 className="text-indigo-600 font-medium hover:underline"
               >
                 Leggi di più →
-              </a>
+              </Link>
             </div>
           </div>
         ))}

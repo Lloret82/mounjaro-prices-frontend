@@ -85,14 +85,18 @@ export default function PriceForm({ onNewPrice }) {
           );
         })}
       </select>
-      <input
+      <select
         name="prodotto"
-        value={form.prodotto}
+        value={form.provincia}
         onChange={handleChange}
-        placeholder="Prodotto"
         required
         className="border p-2 rounded"
-      />
+      >
+        <option value="" disabled>
+          Mounjaro
+        </option>
+        ;
+      </select>
       <input
         name="prezzo"
         type="number"

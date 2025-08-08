@@ -17,9 +17,15 @@ export default function Header() {
     <header className="fixed inset-x-0 top-0 z-[1002] bg-indigo-700 text-white h-16">
       <div className="max-w-6xl mx-auto flex items-center justify-between h-full px-4">
         {/* Logo */}
-        <NavLink to="/" className="flex items-center space-x-2">
-          <img src={logo} alt="Logo" className="h-8 w-8" />
-          <span className="font-bold text-lg">Mounjaro Tracker</span>
+        <NavLink to="/" className="flex items-center space-x-4">
+          <img
+            src={logo}
+            alt="Logo"
+            className="h-32 w-32 md:h-40 md:w-40 lg:h-48 lg:w-48"
+          />
+          <span className="font-bold text-2xl md:text-3xl lg:text-4xl">
+            Mounjaro Italia
+          </span>
         </NavLink>
 
         {/* Desktop navigation */}
